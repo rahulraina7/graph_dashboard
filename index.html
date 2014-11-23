@@ -1,0 +1,196 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Expense Analysis Plus</title>
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- CSS-->
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:700|Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/chosen.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- end CSS-->
+
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+<body>
+  <div class="container" id="main-container">
+    <div id="top-nav">
+      <ul>
+        <li><a data-controls-modal="about-modal" data-backdrop="true" data-keyboard="true" href="javascript:void(0)">About</a></li>
+      </ul>
+    </div>
+    <div id="about-modal" class="modal hide fade">
+      <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>Expense Analysis Plus!</h3>
+      </div>
+      <div class="modal-body">
+        <h4>About</h4>
+        <p>Where do you spend most of your money!</p>
+        <p>This visualization lets you explore the relation between your total balance and your category wise spending based upon your transaction data</p>
+        <p>The <strong>x-axis</strong> shows the transaction amount while the <strong>y-axis</strong> gives the percentage of your total balance spent on that transaction. Each <strong>dot</strong> in the visualization represents a transaction. Hover over the dot to get the specifics of that transaction.</p>
+        <h4>Filters</h4>
+        <p>Use the filters above to select specific transaction category.</p>
+        <p>With the controls below, specify the year to look at, and the number of top and least spends to see at one time.</p>
+       
+      </div>
+      <div class="modal-footer">
+        <p></p>
+      </div>
+    </div>
+    <header>
+    <h1 id="title-top">Expense Analysis plus</h1>
+    </header>
+    <div id="main" role="main">
+      <div class="row">
+        <div class="span8">
+          <select data-placeholder="Filter by Category..." class="chzn-select" id="Category-select" multiple style="width:280px;" tabindex="4">
+            <option value=""></option> 
+            <option value="ATM/Cash Withdrawals">ATM/Cash Withdrawals</option> 
+            <option value="Online Services">Online Services</option> 
+            <option value="Travel">Travel</option> 
+            <option value="Restaurants/Dining">Restaurants/Dining</option> 
+            <option value="General Merchandise">General Merchandise</option> 
+            <option value="Clothing/Shoes">Clothing/Shoes</option> 
+            <option value="Cable/Satellite Services">Cable/Satellite Services</option> 
+            <option value="Telephone Services">Telephone Services</option> 
+            <option value="Entertainment">Entertainment</option>
+          </select>
+        </div>
+      </div>
+      <div id="vis"></div>
+      <div id="tooltip" class="hidden">
+        <div class="content"></div>
+        <div class="tri"></div>
+      </div>
+      <div class="row">
+        <div class="span5">
+          <div id="years" class="control">
+            <h3>Year</h3>
+            <div class="control-links">
+            <a id="all" class="active">All</a> | 
+            <a id="2011">2011</a> | 
+            <a id="2010">2010</a> | 
+            <a id="2009">2009</a> | 
+            <a id="2008">2008</a> | 
+            <a id="2007">2007</a>
+          </div>
+          </div>
+        </div>
+        <div class="span3 offset5">
+          <div id="top" class="control">
+            <h3>Top</h3>
+            <div class="control-links">
+            <a id="top-0">0</a> | 
+            <a id="top-5">5</a> | 
+            <a id="top-15">15</a> | 
+            <a id="top-25">25</a> | 
+            <a id="top-50" class="active">50</a>
+          </div>
+            <h3>Spends</h3>
+          </div>
+        </div>
+        <div class="span3">
+          <div id="bottom" class="control">
+            <h3>Least</h3>
+            <div class="control-links">
+              <a id="bottom-0" class="active">0</a> | 
+              <a id="bottom-5">5</a> | 
+              <a id="bottom-15">15</a> | 
+              <a id="bottom-25">25</a> | 
+              <a id="bottom-50">50</a>
+            </div>
+            <h3>Spendsg</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span4"><a id="key-link" href="javascript:void(0)">Hide Key</a></div>
+        </div>
+      <div class="row">
+        <div class="span7">
+          <div id="key"></div>
+          <p></p>
+        </div>
+        
+      </div>
+    </div>
+   </div> <!--! end of .container -->
+
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+
+      <script defer src="js/plugins.js"></script>
+      <script defer src="js/script.js"></script>
+      <script src="js/libs/jquery.lettering-0.6.1.min.js"></script>
+      <script src="js/libs/bootstrap-modal.js"></script>
+      <script src="js/libs/chosen.jquery.min.js"></script>
+      <script src="js/libs/d3.min.js"></script>
+      <script src="js/libs/d3.csv.min.js"></script>
+      <script src="coffee/script.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+            $("#title-top").lettering('words');
+            $(".chzn-select").chosen();
+            $('.control-links a').click(function() {
+              $(this).siblings().removeClass('active');
+              $(this).addClass('active');
+              });
+            $('#years a').click(function() {
+              var new_options = {"year": $(this).attr("id")};
+              update_options(new_options);
+              });
+            $('#top a').click(function() {
+              var top_limit = $(this).attr("id").split("-");
+              var new_options = {"top": parseInt(top_limit[1])};
+              update_options(new_options);
+              });
+            $('#bottom a').click(function() {
+              var bottom_limit = $(this).attr("id").split("-");
+              var new_options = {"bottom": parseInt(bottom_limit[1])};
+              update_options(new_options);
+              });
+            $("#Category-select").change(function() {
+              var Categorys = $(this).val();
+              var new_options = {"Categorys": Categorys};
+              update_options(new_options);
+              });
+            $('#key-link').click(function() {
+                $("#key").slideToggle( 'slow', function() {
+                  var link = $('#key-link');
+                  if(link.text() == "Show Key")
+                  {
+                  link.text('Hide Key');
+                  }
+                  else
+                  {
+                  link.text('Show Key');
+                  }
+                  });
+                return false;
+                });
+
+          
+            });
+          </script>
+
+
+
+
+
+<!--[if lt IE 7 ]>
+<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+<![endif]-->
+
+</body>
+</html>
