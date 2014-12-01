@@ -4,7 +4,7 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   $(function() {
-    var all_data, base_vis, body, color, data, data_key, draw_details, draw_transaction_details, draw_transaction, filter_Categorys, filter_number, filter_location, filter_year, h, hide_details, key_h, key_pb, key_pl, key_pr, key_pt, key_w, middle_line, trans_body, pb, pl, pr, pre_filter, pt, r_scale, render_key, render_vis, show_details, sort_data, update, update_data, update_scales, vis, w, xAxis, x_scale, yAxis, y_scale, y_scale_reverse, zero_line, _ref, _ref2,
+    var all_data, base_vis, body, color, data, data_key, draw_details, draw_Category_details, draw_Category, filter_Categorys, filter_number, filter_location, filter_year, h, hide_details, key_h, key_pb, key_pl, key_pr, key_pt, key_w, middle_line, trans_body, pb, pl, pr, pre_filter, pt, r_scale, render_key, render_vis, show_details, sort_data, update, update_data, update_scales, vis, w, xAxis, x_scale, yAxis, y_scale, y_scale_reverse, zero_line, _ref, _ref2,
       _this = this;
     data_key = {
       Frequency: "Frequency",
@@ -92,7 +92,7 @@
       min_y_padding = 3;
       min_x_padding = 5;
       _ref3 = d3.extent(data, function(d) {
-        return parseFloat(d["Transaction_Amount"]);
+        return parseFloat(d["Category_Amount"]);
       }), min_x = _ref3[0], max_x = _ref3[1];
       min_x = min_x > 0 ? 0 : min_x;
       _ref4 = d3.extent(data, function(d) {
@@ -121,7 +121,7 @@
       filter_number(root.options.top, root.options.bottom);
       return update_scales();
     };
-    draw_transaction = function() {
+    draw_Category = function() {
       var movies;
       movies = trans_body.selectAll(".movie").data(data, function(d) {
         return d.id;
@@ -136,7 +136,7 @@
         return r_scale(parseFloat(d["Frequency"]));
       });
       movies.transition().duration(1000).attr("transform", function(d) {
-        return "translate(" + (x_scale(d["Transaction_Amount"])) + "," + (y_scale(d["total_bal_per"])) + ")";
+        return "translate(" + (x_scale(d["Category_Amount"])) + "," + (y_scale(d["total_bal_per"])) + ")";
       });
       base_vis.transition().duration(1000).select(".x_axis").call(xAxis);
       zero_line.transition().duration(1000).attr("x1", x_scale(0)).attr("x2", x_scale(0));
@@ -147,11 +147,11 @@
       }).remove();
       return movies.exit().selectAll("circle").transition().duration(1000).attr("r", 0);
     };
-    draw_transaction_details = function(detail_div) {
+    draw_Category_details = function(detail_div) {
       detail_div.enter().append("div").attr("class", "movie-detail").attr("id", function(d) {
         return "movie-detail-" + d.id;
       }).append("h3").text(function(d) {
-        return d["Transaction"];
+        return d["Category"];
       }).append("span").attr("class", "detail-rating").text(function(d) {
         return " " + d["total_bal_per"] + "%";
       });
@@ -173,12 +173,12 @@
       detail_top = d3.select("#detail-love").selectAll(".movie-detail").data(top_data, function(d) {
         return d.id;
       });
-      draw_transaction_details(detail_top);
+      draw_Category_details(detail_top);
       bottom_data = data.slice(root.options.top).reverse();
       detail_bottom = d3.select("#detail-hate").selectAll(".movie-detail").data(bottom_data, function(d) {
         return d.id;
       });
-      return draw_transaction_details(detail_bottom);
+      return draw_Category_details(detail_bottom);
     };
     render_key = function() {
       var example_r, example_x, example_y, Categorys, key, key_demo_group, key_group, key_r;
@@ -209,7 +209,7 @@
       update_data();
       base_vis = d3.select("#vis").append("svg").attr("width", w + (pl + pr)).attr("height", h + (pt + pb)).attr("id", "vis-svg");
       base_vis.append("g").attr("class", "x_axis").attr("transform", "translate(" + pl + "," + (h + pt) + ")").call(xAxis);
-      base_vis.append("text").attr("x", w / 2).attr("y", h + (pt + pb) - 10).attr("text-anchor", "middle").attr("class", "axisTitle").attr("transform", "translate(" + pl + ",0)").text("Transaction Amount ($)");
+      base_vis.append("text").attr("x", w / 2).attr("y", h + (pt + pb) - 10).attr("text-anchor", "middle").attr("class", "axisTitle").attr("transform", "translate(" + pl + ",0)").text("Category Amount ($)");
       base_vis.append("g").attr("class", "y_axis").attr("transform", "translate(" + pl + "," + pt + ")").call(yAxis);
       vis = base_vis.append("g").attr("transform", "translate(" + 0 + "," + (h + (pt + pb)) + ")scale(1,-1)");
       vis.append("text").attr("x", h / 2).attr("y", 20).attr("text-anchor", "middle").attr("class", "axisTitle").attr("transform", "rotate(270)scale(-1,1)translate(" + pb + "," + 0 + ")").text("Total Balance");
@@ -217,12 +217,12 @@
       zero_line = body.append("line").attr("x1", x_scale(0)).attr("x2", x_scale(0)).attr("y1", 0 + 5).attr("y2", h - 5).attr("stroke", "#aaa").attr("stroke-width", 1).attr("stroke-dasharray", "2");
       middle_line = body.append("line").attr("x1", 0 + 5).attr("x2", w + 5).attr("y1", y_scale(50.0)).attr("y2", y_scale(50.0)).attr("stroke", "#aaa").attr("stroke-width", 1).attr("stroke-dasharray", "2");
       trans_body = body.append("g").attr("id", "movies");
-      draw_transaction();
+      draw_Category();
       draw_details();
       return render_key();
     };
-    show_details = function(movie_data, index, element) {
-      var bBox, box, crosshairs_g, movies, msg, selected_movie, tooltipWidth, unselected_movies;
+    show_details = function(trans_data, index, element) {
+      var bBox, box, crosshairs_g, movies, msg, selected_category, tooltipWidth, unselected_categorys;
       movies = body.selectAll(".movie");
       bBox = element.getBBox();
       box = {
@@ -231,40 +231,41 @@
         "x": w + bBox.x,
         "y": h + bBox.y
       };
-      box.x = Math.round(x_scale(movie_data["Transaction_Amount"])) - (pr + 109) + r_scale(movie_data["Frequency"]);
-      box.y = Math.round(y_scale_reverse(movie_data["total_bal_per"])) - (r_scale(movie_data["Frequency"]) + pt + -55);
+      box.x = Math.round(x_scale(trans_data["Category_Amount"])) - (pr + 109) + r_scale(trans_data["Frequency"]);
+      box.y = Math.round(y_scale_reverse(trans_data["total_bal_per"])) - (r_scale(trans_data["Frequency"]) + pt);
       tooltipWidth = parseInt(d3.select('#tooltip').style('width').split('px').join(''));
-      msg = '<p class="title">' + movie_data["Transaction"] + '</p>';
+      msg = '<p class="title">' + trans_data["Category"] + '</p>';
       msg += '<table>';
-      msg += '<tr><td>% of Total Balance : </td><td>' + movie_data["total_bal_per"] + '%</td></tr>';
-      msg += '<tr><td>Frequency</td><td>' + movie_data["Frequency"] + ' times</td></tr>';
-      msg += '<tr><td>Total Balance:</td><td>' + movie_data["Total Balance"] + ' $</td></tr>';
-      msg += '<tr><td>Amount:</td><td>' + movie_data["Transaction_Amount"] + ' $' + '</td></tr>';
-      msg += '<tr><td>Total balance after transaction:</td><td>' + movie_data["Total_balance_after"] + ' $</td></tr>';
-      msg += '<tr><td>Location</td><td>' + movie_data["Location"] + '</td></tr>';
+      msg += '<tr><td>% of Total Balance : </td><td>' + trans_data["total_bal_per"] + '%</td></tr>';
+      msg += '<tr><td>Frequency</td><td>' + trans_data["Frequency"] + ' times</td></tr>';
+      msg += '<tr><td>Total Balance:</td><td>' + trans_data["Total Balance"] + ' $</td></tr>';
+      msg += '<tr><td>Amount:</td><td>' + trans_data["Category_Amount"] + ' $' + '</td></tr>';
+      msg += '<tr><td>Total balance after Category:</td><td>' + trans_data["Total_balance_after"] + ' $</td></tr>';
+      msg += '<tr><td>Location</td><td>' + trans_data["Location"] + '</td></tr>';
+      msg += '<tr><td>Year</td><td>' + trans_data["year"] + '</td></tr>';
       msg += '</table>';
       d3.select('#tooltip').classed('hidden', false);
       d3.select('#tooltip .content').html(msg);
       d3.select('#tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('top', "" + box.y + "px");
-      selected_movie = d3.select(element);
-      selected_movie.attr("opacity", 1.0);
-      unselected_movies = movies.filter(function(d) {
-        return d.id !== movie_data.id;
+      selected_category = d3.select(element);
+      selected_category.attr("opacity", 1.0);
+      unselected_categorys = movies.filter(function(d) {
+        return d.id !== trans_data.id;
       }).selectAll("circle").attr("opacity", 0.3);
       crosshairs_g = body.insert("g", "#movies").attr("id", "crosshairs");
-      crosshairs_g.append("line").attr("class", "crosshair").attr("x1", 0 + 3).attr("x2", x_scale(movie_data["Transaction_Amount"]) - r_scale(movie_data["Frequency"])).attr("y1", y_scale(movie_data["total_bal_per"])).attr("y2", y_scale(movie_data["total_bal_per"])).attr("stroke-width", 1);
-      return crosshairs_g.append("line").attr("class", "crosshair").attr("x1", x_scale(movie_data["Transaction_Amount"])).attr("x2", x_scale(movie_data["Transaction_Amount"])).attr("y1", 0 + 3).attr("y2", y_scale(movie_data["total_bal_per"]) - r_scale(movie_data["Frequency"])).attr("stroke-width", 1);
+      crosshairs_g.append("line").attr("class", "crosshair").attr("x1", 0 + 3).attr("x2", x_scale(trans_data["Category_Amount"]) - r_scale(trans_data["Frequency"])).attr("y1", y_scale(trans_data["total_bal_per"])).attr("y2", y_scale(trans_data["total_bal_per"])).attr("stroke-width", 1);
+      return crosshairs_g.append("line").attr("class", "crosshair").attr("x1", x_scale(trans_data["Category_Amount"])).attr("x2", x_scale(trans_data["Category_Amount"])).attr("y1", 0 + 3).attr("y2", y_scale(trans_data["total_bal_per"]) - r_scale(trans_data["Frequency"])).attr("stroke-width", 1);
     };
-    hide_details = function(movie_data) {
+    hide_details = function(trans_data) {
       var movies;
       d3.select('#tooltip').classed('hidden', true);
       movies = body.selectAll(".movie").selectAll("circle").attr("opacity", 0.85);
       return body.select("#crosshairs").remove();
     };
-    d3.csv("data/trans.csv", render_vis);
+    d3.csv("data/trans1.csv", render_vis);
     update = function() {
       update_data();
-      draw_transaction();
+      draw_Category();
       return draw_details();
     };
     return root.update_options = function(new_options) {

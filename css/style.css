@@ -61,14 +61,15 @@ h2 {
 }
 
 #title-top .word1 {
-  font-size: 30px;
-  line-height: 10px;
-}
-
-#title-top .word2 {
+ 
   font-size: 90px;
   line-height: 70px;
   padding-right: 10px;
+}
+
+#title-top .word2 {
+  font-size: 30px;
+  line-height: 10px;
 }
 
 #title-top .word3 {
