@@ -122,11 +122,11 @@
       return update_scales();
     };
     draw_Category = function() {
-      var movies;
-      movies = trans_body.selectAll(".movie").data(data, function(d) {
+      var categories;
+      categories = trans_body.selectAll(".movie").data(data, function(d) {
         return d.id;
       });
-      movies.enter().append("g").attr("class", "movie").on("mouseover", function(d, i) {
+      categories.enter().append("g").attr("class", "movie").on("mouseover", function(d, i) {
         return show_details(d, i, this);
       }).on("mouseout", hide_details).append("circle").attr("opacity", 0.85).attr("fill", function(d) {
         return color(d["Category"]);
@@ -135,17 +135,17 @@
       }).attr("stroke-width", 2).attr("r", function(d) {
         return r_scale(parseFloat(d["Frequency"]));
       });
-      movies.transition().duration(1000).attr("transform", function(d) {
+      categories.transition().duration(1000).attr("transform", function(d) {
         return "translate(" + (x_scale(d["Category_Amount"])) + "," + (y_scale(d["total_bal_per"])) + ")";
       });
       base_vis.transition().duration(1000).select(".x_axis").call(xAxis);
       zero_line.transition().duration(1000).attr("x1", x_scale(0)).attr("x2", x_scale(0));
       middle_line.transition().duration(1000).attr("y1", y_scale(50.0)).attr("y2", y_scale(50.0));
       base_vis.transition().duration(1000).select(".y_axis").call(yAxis);
-      movies.exit().transition().duration(1000).attr("transform", function(d) {
+      categories.exit().transition().duration(1000).attr("transform", function(d) {
         return "translate(" + 0 + "," + 0 + ")";
       }).remove();
-      return movies.exit().selectAll("circle").transition().duration(1000).attr("r", 0);
+      return categories.exit().selectAll("circle").transition().duration(1000).attr("r", 0);
     };
     draw_Category_details = function(detail_div) {
       detail_div.enter().append("div").attr("class", "movie-detail").attr("id", function(d) {
@@ -216,14 +216,14 @@
       body = vis.append("g").attr("transform", "translate(" + pl + "," + pb + ")").attr("id", "vis-body");
       zero_line = body.append("line").attr("x1", x_scale(0)).attr("x2", x_scale(0)).attr("y1", 0 + 5).attr("y2", h - 5).attr("stroke", "#aaa").attr("stroke-width", 1).attr("stroke-dasharray", "2");
       middle_line = body.append("line").attr("x1", 0 + 5).attr("x2", w + 5).attr("y1", y_scale(50.0)).attr("y2", y_scale(50.0)).attr("stroke", "#aaa").attr("stroke-width", 1).attr("stroke-dasharray", "2");
-      trans_body = body.append("g").attr("id", "movies");
+      trans_body = body.append("g").attr("id", "categories");
       draw_Category();
       draw_details();
       return render_key();
     };
     show_details = function(trans_data, index, element) {
-      var bBox, box, crosshairs_g, movies, msg, selected_category, tooltipWidth, unselected_categorys;
-      movies = body.selectAll(".movie");
+      var bBox, box, crosshairs_g, categories, msg, selected_category, tooltipWidth, unselected_categorys;
+      categories = body.selectAll(".movie");
       bBox = element.getBBox();
       box = {
         "height": Math.round(bBox.height),
@@ -246,17 +246,17 @@
       d3.select('#tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('top', "" + box.y + "px");
       selected_category = d3.select(element);
       selected_category.attr("opacity", 1.0);
-      unselected_categorys = movies.filter(function(d) {
+      unselected_categorys = categories.filter(function(d) {
         return d.id !== trans_data.id;
       }).selectAll("circle").attr("opacity", 0.3);
-      crosshairs_g = body.insert("g", "#movies").attr("id", "crosshairs");
+      crosshairs_g = body.insert("g", "#categories").attr("id", "crosshairs");
       crosshairs_g.append("line").attr("class", "crosshair").attr("x1", 0 + 3).attr("x2", x_scale(trans_data["Category_Amount"]) - r_scale(trans_data["Frequency"])).attr("y1", y_scale(trans_data["total_bal_per"])).attr("y2", y_scale(trans_data["total_bal_per"])).attr("stroke-width", 1);
       return crosshairs_g.append("line").attr("class", "crosshair").attr("x1", x_scale(trans_data["Category_Amount"])).attr("x2", x_scale(trans_data["Category_Amount"])).attr("y1", 0 + 3).attr("y2", y_scale(trans_data["total_bal_per"]) - r_scale(trans_data["Frequency"])).attr("stroke-width", 1);
     };
     hide_details = function(trans_data) {
-      var movies;
+      var categories;
       d3.select('#tooltip').classed('hidden', true);
-      movies = body.selectAll(".movie").selectAll("circle").attr("opacity", 0.85);
+      categories = body.selectAll(".movie").selectAll("circle").attr("opacity", 0.85);
       return body.select("#crosshairs").remove();
     };
     d3.csv("data/trans1.csv", render_vis);
