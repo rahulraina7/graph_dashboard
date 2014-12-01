@@ -135,7 +135,7 @@
       }).attr("stroke-width", 2).attr("r", function(d) {
         return r_scale(parseFloat(d["Frequency"]));
       });
-      categories.transition().duration(4000).attr("transform", function(d) {
+      categories.transition().duration(4000).ease("linear").tween("year",tweenYear).attr("transform", function(d) {
         return "translate(" + (x_scale(d["Category_Amount"])) + "," + (y_scale(d["total_bal_per"])) + ")";
       });
       base_vis.transition().duration(1000).select(".x_axis").call(xAxis);
@@ -157,29 +157,7 @@
       });
       return detail_div.exit().remove();
     };
-    draw_details = function() {
-      var bottom_data, detail_bottom, detail_top, top_data;
-      if (root.options.top === 0) {
-        $("#detail-love").hide();
-      } else {
-        $("#detail-love").show();
-      }
-      if (root.options.bottom === 0) {
-        $("#detail-hate").hide();
-      } else {
-        $("#detail-hate").show();
-      }
-      top_data = data.slice(0, root.options.top);
-      detail_top = d3.select("#detail-love").selectAll(".category-detail").data(top_data, function(d) {
-        return d.id;
-      });
-      draw_Category_details(detail_top);
-      bottom_data = data.slice(root.options.top).reverse();
-      detail_bottom = d3.select("#detail-hate").selectAll(".category-detail").data(bottom_data, function(d) {
-        return d.id;
-      });
-      return draw_Category_details(detail_bottom);
-    };
+   
     render_key = function() {
       var example_r, example_x, example_y, Categorys, key, key_demo_group, key_group, key_r;
       Categorys = {};
@@ -218,8 +196,7 @@
       middle_line = body.append("line").attr("x1", 0 + 5).attr("x2", w + 5).attr("y1", y_scale(50.0)).attr("y2", y_scale(50.0)).attr("stroke", "#aaa").attr("stroke-width", 1).attr("stroke-dasharray", "2");
       trans_body = body.append("g").attr("id", "categories");
       draw_Category();
-      draw_details();
-      return render_key();
+     return render_key();
     };
     show_details = function(trans_data, index, element) {
       var bBox, box, crosshairs_g, categories, msg, selected_category, tooltipWidth, unselected_categorys;
@@ -253,6 +230,13 @@
       crosshairs_g.append("line").attr("class", "crosshair").attr("x1", 0 + 3).attr("x2", x_scale(trans_data["Category_Amount"]) - r_scale(trans_data["Frequency"])).attr("y1", y_scale(trans_data["total_bal_per"])).attr("y2", y_scale(trans_data["total_bal_per"])).attr("stroke-width", 1);
       return crosshairs_g.append("line").attr("class", "crosshair").attr("x1", x_scale(trans_data["Category_Amount"])).attr("x2", x_scale(trans_data["Category_Amount"])).attr("y1", 0 + 3).attr("y2", y_scale(trans_data["total_bal_per"]) - r_scale(trans_data["Frequency"])).attr("stroke-width", 1);
     };
+
+   function tweenYear() {
+      var year = d3.interpolateNumber(2009, 2011);
+      //return function(t) { displayYear(year(t)); };
+    }
+
+
     hide_details = function(trans_data) {
       var categories;
       d3.select('#tooltip').classed('hidden', true);
@@ -263,7 +247,7 @@
     update = function() {
       update_data();
       draw_Category();
-      return draw_details();
+      
     };
     return root.update_options = function(new_options) {
       root.options = $.extend({}, root.options, new_options);
