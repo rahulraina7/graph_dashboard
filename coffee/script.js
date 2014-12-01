@@ -238,10 +238,7 @@
       msg += '<table>';
       msg += '<tr><td>% of Total Balance : </td><td>' + trans_data["total_bal_per"] + '%</td></tr>';
       msg += '<tr><td>Frequency</td><td>' + trans_data["Frequency"] + ' times</td></tr>';
-      msg += '<tr><td>Total Balance:</td><td>' + trans_data["Total Balance"] + ' $</td></tr>';
-      msg += '<tr><td>Amount:</td><td>' + trans_data["Category_Amount"] + ' $' + '</td></tr>';
-      msg += '<tr><td>Total balance after Category:</td><td>' + trans_data["Total_balance_after"] + ' $</td></tr>';
-      msg += '<tr><td>Location</td><td>' + trans_data["Location"] + '</td></tr>';
+      msg += '<tr><td>Top Transaction -</td><td>' + trans_data["Transaction"] + '</td></tr>';
       msg += '<tr><td>Year</td><td>' + trans_data["year"] + '</td></tr>';
       msg += '</table>';
       d3.select('#tooltip').classed('hidden', false);
