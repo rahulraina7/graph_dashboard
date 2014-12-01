@@ -123,10 +123,10 @@
     };
     draw_Category = function() {
       var categories;
-      categories = trans_body.selectAll(".movie").data(data, function(d) {
+      categories = trans_body.selectAll(".category").data(data, function(d) {
         return d.id;
       });
-      categories.enter().append("g").attr("class", "movie").on("mouseover", function(d, i) {
+      categories.enter().append("g").attr("class", "category").on("mouseover", function(d, i) {
         return show_details(d, i, this);
       }).on("mouseout", hide_details).append("circle").attr("opacity", 0.85).attr("fill", function(d) {
         return color(d["Category"]);
@@ -135,7 +135,7 @@
       }).attr("stroke-width", 2).attr("r", function(d) {
         return r_scale(parseFloat(d["Frequency"]));
       });
-      categories.transition().duration(1000).attr("transform", function(d) {
+      categories.transition().duration(4000).attr("transform", function(d) {
         return "translate(" + (x_scale(d["Category_Amount"])) + "," + (y_scale(d["total_bal_per"])) + ")";
       });
       base_vis.transition().duration(1000).select(".x_axis").call(xAxis);
@@ -148,8 +148,8 @@
       return categories.exit().selectAll("circle").transition().duration(1000).attr("r", 0);
     };
     draw_Category_details = function(detail_div) {
-      detail_div.enter().append("div").attr("class", "movie-detail").attr("id", function(d) {
-        return "movie-detail-" + d.id;
+      detail_div.enter().append("div").attr("class", "category-detail").attr("id", function(d) {
+        return "category-detail-" + d.id;
       }).append("h3").text(function(d) {
         return d["Category"];
       }).append("span").attr("class", "detail-rating").text(function(d) {
@@ -170,12 +170,12 @@
         $("#detail-hate").show();
       }
       top_data = data.slice(0, root.options.top);
-      detail_top = d3.select("#detail-love").selectAll(".movie-detail").data(top_data, function(d) {
+      detail_top = d3.select("#detail-love").selectAll(".category-detail").data(top_data, function(d) {
         return d.id;
       });
       draw_Category_details(detail_top);
       bottom_data = data.slice(root.options.top).reverse();
-      detail_bottom = d3.select("#detail-hate").selectAll(".movie-detail").data(bottom_data, function(d) {
+      detail_bottom = d3.select("#detail-hate").selectAll(".category-detail").data(bottom_data, function(d) {
         return d.id;
       });
       return draw_Category_details(detail_bottom);
@@ -223,7 +223,7 @@
     };
     show_details = function(trans_data, index, element) {
       var bBox, box, crosshairs_g, categories, msg, selected_category, tooltipWidth, unselected_categorys;
-      categories = body.selectAll(".movie");
+      categories = body.selectAll(".category");
       bBox = element.getBBox();
       box = {
         "height": Math.round(bBox.height),
@@ -232,7 +232,7 @@
         "y": h + bBox.y
       };
       box.x = Math.round(x_scale(trans_data["Category_Amount"])) - (pr + 109) + r_scale(trans_data["Frequency"]);
-      box.y = Math.round(y_scale_reverse(trans_data["total_bal_per"])) - (r_scale(trans_data["Frequency"]) + pt);
+      box.y = Math.round(y_scale_reverse(trans_data["total_bal_per"])) - (r_scale(trans_data["Frequency"]) - 50 + pt);
       tooltipWidth = parseInt(d3.select('#tooltip').style('width').split('px').join(''));
       msg = '<p class="title">' + trans_data["Category"] + '</p>';
       msg += '<table>';
@@ -243,7 +243,7 @@
       msg += '</table>';
       d3.select('#tooltip').classed('hidden', false);
       d3.select('#tooltip .content').html(msg);
-      d3.select('#tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('top', "" + box.y + "px");
+      d3.select('#tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('top', "" + box.y  + "px");
       selected_category = d3.select(element);
       selected_category.attr("opacity", 1.0);
       unselected_categorys = categories.filter(function(d) {
@@ -256,7 +256,7 @@
     hide_details = function(trans_data) {
       var categories;
       d3.select('#tooltip').classed('hidden', true);
-      categories = body.selectAll(".movie").selectAll("circle").attr("opacity", 0.85);
+      categories = body.selectAll(".category").selectAll("circle").attr("opacity", 0.85);
       return body.select("#crosshairs").remove();
     };
     d3.csv("data/trans1.csv", render_vis);
