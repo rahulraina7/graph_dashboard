@@ -1,0 +1,28 @@
+id,year,exclude,Transaction,total_bal_per,Location,Category,Total Balance,Frequency,Category_Amount,Total_balance_after
+1,2010,,McDonalds,7.70,London,Shopping,1000,18,77,923
+2,2010,,Shopper's Stop,7.27,London,Home Needs,1110,35,80.66,1029.34
+3,2010,,Shopper's Stop,92.63,Delhi,Travel,890,200,824.39,65.61
+4,2010,,Walmart,39.38,New York,Clothing/Shoes,1300,15,512,788
+5,2010,,Walmart,33.00,San-Fransisco,Restaurants/Dining,1212,20,400,812
+6,2010,,Adidas,44.94,Mumbai,Entertainment,1780,20,800,980
+7,2011,,Nike,20.00,Bangalore,Clothing/Shoes,7000,120,1400,5600
+8,2011,,Domino's,77.24,Delhi,Restaurants/Dining,2500,17,1931,569
+9,2011,,PVR Cinemas,56.25,Mumbai,Entertainment,2912,2,1638,1274
+10,2011,,Bangalore Central,4.86,Bangalore,Online Services,2222,26,108,2114
+11,2011,,ATM / Withdrawl,15.09,Bangalore,ATM/Cash Withdrawals,1451,550,219,1232
+12,2011,,GoIBIBO.com,4.56,Delhi,Travel,6011,85,274,5737
+13,2011,,ATM / Withdrawl,32.86,San-Fransisco,Salary,1400,44,460,940
+14,2009,,Walmart,67.00,London,Clothing/Shoes,1000,6,670,330
+15,2009,,ATM / Withdrawl,81.74,New York,Shopping,1101,125,900,201
+16,2009,,ATM / Withdrawl,51.11,Bangalore,Home Needs,450,13,230,220
+17,2009,,PVR Cinemas,20.81,Delhi,Travel,1211,30,252,959
+18,2009,,Big Bazaar,75.00,Bangalore,ATM/Cash Withdrawals,2000,15,1500,500
+19,2009,,Big Bazaar,80.95,Delhi,Restaurants/Dining,2100,7,1700,400
+20,2009,,MasterCard Bill pay,73.40,Bangalore,Entertainment,1515,44,1112,403
+21,2009,,Visa bill pay,64.33,Delhi,Online Services,2100,36,1351,749
+22,2009,,Visa bill pay,64.33,Delhi,Salary,2100,36,1351,749
+23,2010,,Adidas,80.00,Mumbai,Mumbai,1000,20,800,200
+24,2010,,Adidas,37.50,Mumbai,Online Services,800,20,300,500
+25,2010,,Adidas,58.56,Mumbai,Salary,2220,20,1300,920
+26,2011,,ATM / Withdrawl,32.50,San-Fransisco,Home Needs,1600,44,520,1080
+27,2011,,ATM / Withdrawl,32.22,San-Fransisco,Shopping,1800,44,580,1220
