@@ -29,15 +29,15 @@ id,year,exclude,Transaction,total_bal_per,Location,Category,Total Balance,Freque
 24,2009,,Loan Repayments,80,Mumbai,Loan Repayments,10000,20,32000,2000,20000
 25,2011,,Loan Repayments,80,Mumbai,Loan Repayments,10000,20,24000,2000,20000
 30,2009,,Big Bazaar,75,Bangalore,Pension Plans,20000,15,15000,5000,50000
-31,2009,,Loan Repayments,80,Mumbai,Professional Services and Fees,10000,30,2500,2000,20000
-32,2010,,Loan Repayments,80,Mumbai,Professional Services and Fees,10000,31,2500,2000,20000
-33,2011,,Loan Repayments,80,Mumbai,Professional Services and Fees,10000,32,2500,2000,20000
-34,2009,,Loan Repayments,80,Mumbai,Property,10000,33,3350,2000,20000
-35,2010,,Loan Repayments,80,Mumbai,Property,10000,34,3350,2000,20000
-36,2011,,Loan Repayments,80,Mumbai,Property,10000,35,3350,2000,20000
+31,2009,,Loan Repayments,80,Mumbai,Professional Services and Fees,10000,30,3500,2000,20000
+32,2010,,Loan Repayments,80,Mumbai,Professional Services and Fees,10000,31,3500,2000,20000
+33,2011,,Loan Repayments,80,Mumbai,Professional Services and Fees,10000,32,3500,2000,20000
+34,2009,,Loan Repayments,80,Mumbai,Property,10000,33,8000,2000,20000
+35,2010,,Loan Repayments,80,Mumbai,Property,10000,34,8000,2000,20000
+36,2011,,Loan Repayments,80,Mumbai,Property,10000,35,8000,2000,20000
 37,2009,,Loan Repayments,80,Mumbai,Taxes,10000,36,8000,2000,20000
-38,2010,,Loan Repayments,80,Mumbai,Taxes,10000,37,11000,2000,20000
-39,2011,,Loan Repayments,80,Mumbai,Taxes,10000,38,15000,2000,20000
+38,2010,,Loan Repayments,80,Mumbai,Taxes,10000,37,8000,2000,20000
+39,2011,,Loan Repayments,80,Mumbai,Taxes,10000,38,8000,2000,20000
 40,2009,,Loan Repayments,80,Mumbai,Travel & Entertainment,10000,39,6300,2000,20000
 41,2010,,Loan Repayments,80,Mumbai,Travel & Entertainment,10000,40,7700,2000,20000
 42,2011,,Loan Repayments,80,Mumbai,Travel & Entertainment,10000,41,10000,2000,20000
