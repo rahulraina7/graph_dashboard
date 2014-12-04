@@ -190,7 +190,7 @@
       base_vis.append("text").attr("x", w / 2).attr("y", h + (pt + pb) - 10).attr("text-anchor", "middle").attr("class", "axisTitle").attr("transform", "translate(" + pl + ",0)").text("Category Amount ($)");
       base_vis.append("g").attr("class", "y_axis").attr("transform", "translate(" + pl + "," + pt + ")").call(yAxis);
       vis = base_vis.append("g").attr("transform", "translate(" + 0 + "," + (h + (pt + pb)) + ")scale(1,-1)");
-      vis.append("text").attr("x", h / 2).attr("y", 20).attr("text-anchor", "middle").attr("class", "axisTitle").attr("transform", "rotate(270)scale(-1,1)translate(" + pb + "," + 0 + ")").text("Total Balance");
+      vis.append("text").attr("x", h / 2).attr("y", 20).attr("text-anchor", "middle").attr("class", "axisTitle").attr("transform", "rotate(270)scale(-1,1)translate(" + pb + "," + 0 + ")").text("% of Total Balance");
       body = vis.append("g").attr("transform", "translate(" + pl + "," + pb + ")").attr("id", "vis-body");
       zero_line = body.append("line").attr("x1", x_scale(0)).attr("x2", x_scale(0)).attr("y1", 0 + 5).attr("y2", h - 5).attr("stroke", "#aaa").attr("stroke-width", 1).attr("stroke-dasharray", "2");
       middle_line = body.append("line").attr("x1", 0 + 5).attr("x2", w + 5).attr("y1", y_scale(50.0)).attr("y2", y_scale(50.0)).attr("stroke", "#aaa").attr("stroke-width", 1).attr("stroke-dasharray", "2");
@@ -213,7 +213,8 @@
       tooltipWidth = parseInt(d3.select('#tooltip').style('width').split('px').join(''));
       msg = '<p class="title">' + trans_data["Category"] + '</p>';
       msg += '<table>';
-      msg += '<tr><td>% of Total Balance : </td><td>' + trans_data["total_bal_per"] + '%</td></tr>';
+      msg += '<tr><td>Category amount (x) : </td><td>' + trans_data["Category_Amount"] + ' $</td></tr>';
+      msg += '<tr><td>% of Total Balance (y) : </td><td>' + trans_data["total_bal_per"] + '%</td></tr>';
       msg += '<tr><td>Frequency</td><td>' + trans_data["Frequency"] + ' times</td></tr>';
       msg += '<tr><td>Top Transaction -</td><td>' + trans_data["Transaction"] + '</td></tr>';
       msg += '<tr><td>Year</td><td>' + trans_data["year"] + '</td></tr>';
