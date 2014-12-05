@@ -1,7 +1,7 @@
 [
   {
     "name": "Compensation",
-    "region": "Sub-Saharan Africa",
+    "region": "Compensation",
     "income": [
       [
         2006,
@@ -82,9 +82,8 @@
     ]
   },
   {
-    
     "name": "COGS",
-    "region": "Sub-Saharan Africa",
+    "region": "COGS",
     "income": [
       [
         2006,
@@ -163,12 +162,10 @@
         32.22
       ]
     ]
-  
-    
   },
   {
     "name": "Office/Business Expenses",
-    "region": "Sub-Saharan Africa",
+    "region": "Office/Business Expenses",
     "income": [
       [
         2006,
@@ -250,7 +247,7 @@
   },
   {
     "name": "Taxes",
-    "region": "Sub-Saharan Africa",
+    "region": "Taxes",
     "income": [
       [
         2006,
@@ -329,13 +326,10 @@
         17.5
       ]
     ]
-  
-    
   },
   {
-    
     "name": "Travel & Entertainment",
-    "region": "Sub-Saharan Africa",
+    "region": "Travel & Entertainment",
     "income": [
       [
         2006,
@@ -414,12 +408,10 @@
         22.5
       ]
     ]
-  
-    
   },
   {
     "name": "Transfers",
-    "region": "Sub-Saharan Africa",
+    "region": "Transfers",
     "income": [
       [
         2006,
@@ -498,12 +490,10 @@
         59
       ]
     ]
-  
-    
   },
   {
     "name": "Miscellaneous",
-    "region": "Sub-Saharan Africa",
+    "region": "Miscellaneous",
     "income": [
       [
         2006,
@@ -582,12 +572,10 @@
         59
       ]
     ]
-  
-    
   },
   {
     "name": "Uncategorized",
-    "region": "Sub-Saharan Africa",
+    "region": "Uncategorized",
     "income": [
       [
         2006,
@@ -666,12 +654,10 @@
         15
       ]
     ]
-  
-    
   },
   {
     "name": "Loan Repayments",
-    "region": "Sub-Saharan Africa",
+    "region": "Loan Repayments",
     "income": [
       [
         2006,
@@ -750,12 +736,10 @@
         14
       ]
     ]
-  
-    
   },
   {
     "name": "Withdrawals & Checks",
-    "region": "Sub-Saharan Africa",
+    "region": "Withdrawals & Checks",
     "income": [
       [
         2006,
@@ -771,7 +755,8 @@
       ],
       [
         2009,
-        3200      ],
+        3200
+      ],
       [
         2010,
         4800
@@ -833,7 +818,5 @@
         3.8
       ]
     ]
-  
-    
   }
 ]

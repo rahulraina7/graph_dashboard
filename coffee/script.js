@@ -165,11 +165,11 @@
         return Categorys[d["Category"]] = 1;
       });
       key_r = 10;
-      key = d3.select("#key").append("svg").attr("id", "key-svg").attr("width", key_w).attr("height", key_h + key_pb + key_pt);
+      key = d3.select("#key").append("svg").attr("id", "key-svg").attr("width",450).attr("height", key_h + key_pb + key_pt);
       key.append("rect").attr("width", key_w).attr("height", key_h + key_pb + key_pt).attr("fill", "#ffffff").attr("opacity", 0.0);
       key = key.append("g").attr("transform", "translate(" + key_pl + "," + key_pt + ")");
       key_group = key.selectAll(".key-group").data(d3.keys(Categorys)).enter().append("g").attr("class", "key-group").attr("transform", function(d, i) {
-        return "translate(" + (i * 25 >= key_h ? 140 : 0) + "," + (i * 25 % key_h) + ")";
+        return "translate(" + (i * 25 >= key_h ? 220 : 0) + "," + (i * 25 % key_h) + ")";
       });
       key_group.append("circle").attr("r", key_r).attr("fill", function(d) {
         return color(d);
@@ -221,7 +221,7 @@
       msg += '</table>';
       d3.select('#tooltip').classed('hidden', false);
       d3.select('#tooltip .content').html(msg);
-      d3.select('#tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('top', "" + box.y  + "px");
+      d3.select('#tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('top', "" + box.y + "px");
       selected_category = d3.select(element);
       selected_category.attr("opacity", 1.0);
       unselected_categorys = categories.filter(function(d) {
