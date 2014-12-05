@@ -7,6 +7,11 @@ a {
   color: #000;
 }
 
+#chart {
+  margin-left: -40px;
+  height: 506px;
+}
+
 a:visited {
   color: #000;
 }
@@ -165,6 +170,14 @@ h3 {
   border-radius: 5px;
 
   position: relative;
+}
+
+#storyChart{
+    height: 1200px;
+    width: 1200px;
+   position: relative;
+    overflow-y: auto;
+    overflow-x:auto;
 }
 
 #story-link {
@@ -410,6 +423,11 @@ path.area {
 
 .modal-body p {
   font-size: 1.2em;
+}
+
+#story-modal {
+  height: 500px;
+  width: 500px;
 }
 
 .modal-footer {
